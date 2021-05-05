@@ -1,3 +1,13 @@
 <h1>main</h1>
-{{ title }}
+
+
+<nav>
+  <a routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" [routerLink]="['/']">Главная</a><br>
+  <a routerLinkActive="active" routerLink="about-us">О нас</a><br>
+  <a routerLinkActive="active" routerLink="shop/sushi">Категория Суши</a><br>
+  <a routerLinkActive="active" routerLink="shop/sushi/tovar-1"> - Товар 1</a><br>
+  <a routerLinkActive="active" routerLink="shop/sushi/tovar-2"> - Товар 2</a><br>
+  <a routerLinkActive="active" routerLink="shop/rolls">Категория Роллы</a><br>
+  <a routerLinkActive="active" routerLink="shop/rolls/tovar-4"> - Товар 4</a><br>
+</nav>
 <router-outlet></router-outlet>

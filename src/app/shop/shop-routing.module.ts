@@ -9,9 +9,10 @@ const routes: Routes = [
     path: 'shop',
     component: ShopComponent,
     children: [
-      {path: '', pathMatch: 'full', redirectTo: 'catalog'},
-      {path: 'catalog', component: CatalogComponent},
-      {path: 'product', component: ProductComponent}
+      // {path: '', pathMatch: 'full', redirectTo: 'catalog'}, // list all category
+      {path: ':code', component: CatalogComponent, /*data: {component: 'category'}*/},
+      {path: ':categoryCode/:productCode', component: ProductComponent},
+      {path: '**', redirectTo: 'catalog/sushi'} // default shop page
     ]
   }
 ];

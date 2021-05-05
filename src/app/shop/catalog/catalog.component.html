@@ -1,1 +1,12 @@
-<p>catalog works!</p>
+<p>catalog works! 1</p>
+
+<h1>{{response?.h1}}</h1>
+
+
+<ul *ngIf="response">
+  <li *ngFor="let item of response.products|keyvalue">
+    {{item.value.name}}
+  </li>
+</ul>
+
+<article>{{response?.text}}</article>
