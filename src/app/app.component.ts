@@ -1,39 +1,43 @@
-import {AfterViewChecked, Component, OnInit} from '@angular/core';
+import {AfterViewChecked, AfterViewInit, Component, OnInit} from '@angular/core';
 import { faFacebook, faInstagram, faTwitter,  } from '@fortawesome/free-brands-svg-icons';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import {BasketService} from './basket.service';
-import {ActivatedRoute} from "@angular/router";
-// import { library, icon } from '@fortawesome/fontawesome-svg-core';
-// import { faCamera } from '@fortawesome/free-solid-svg-icons';
+import {ActivatedRoute} from '@angular/router';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, AfterViewChecked{
+export class AppComponent implements OnInit, AfterViewChecked, AfterViewInit{
   faFacebook = faFacebook;
   faInstagram = faInstagram;
   faTwitter = faTwitter;
   faShoppingCart = faShoppingCart;
   currentYear: number = new Date().getFullYear();
-  public basketCount: number;
+  public basketCnt: Observable<number>;
 
   constructor(private basket: BasketService, private route: ActivatedRoute) {
-    route.url.subscribe(val => {
-      this.basketCount = this.basket.getTotalSum();
-      console.log('constructor app', this.basket.getTotalSum());
-    });
+    this.basketCnt = this.basket.basketCnt;
+    // route.url.subscribe(val => {
+    // });
   }
 
   ngAfterViewChecked(): void {
+    // console.log('ngAfterViewChecked');
+  }
+
+  ngAfterViewInit(): void {
+    // console.log('ngAfterViewInit');
+
   }
 
   ngOnInit(): void {
-    this.basketCount = 24; // this.basket.getTotalSum();
-    console.log('ngOnInit app');
-    setTimeout(() => {
-      this.basketCount = 28;
-    }, 2000);
+   // this.basket.setTotalSum();
+
+   // console.log('ngOnInit');
+
+
   }
 }

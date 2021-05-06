@@ -5,11 +5,4 @@ import {Component, Input, OnInit} from '@angular/core';
   template: `<router-outlet></router-outlet>`,
   styles: []
 })
-export class ShopComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class ShopComponent {}

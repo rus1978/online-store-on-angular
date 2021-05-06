@@ -1,12 +1,15 @@
 import {Injectable, OnDestroy} from '@angular/core';
 import {BasketData} from './shop/classes/basket';
+import {Observable, Subscriber} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BasketService implements OnDestroy {
+export class BasketService {
   private data: object;
   private keyStorage = 'basketData';
+  public obServ: Subscriber<number>;
+  public basketCnt: Observable<number>;
 
   constructor() {
 
@@ -15,6 +18,8 @@ export class BasketService implements OnDestroy {
     if (this.data === null){
         this.data = {};
     }
+
+    this.basketCnt = new Observable((subscriber) => this.obServ = subscriber);
   }
 
   public add(item: BasketData): void
@@ -25,10 +30,10 @@ export class BasketService implements OnDestroy {
       this.data[item.code].qty += item.qty;
     }
 
-    console.log(this.data);
+    localStorage.setItem(this.keyStorage, JSON.stringify(this.data));
   }
 
-  public getTotalSum(): number
+  public setTotalSum(): number
   {
     let result = 0;
 
@@ -37,10 +42,11 @@ export class BasketService implements OnDestroy {
         result += value.price * value.qty;
       });
     }
-    return result;
-  }
 
-  ngOnDestroy(): void {
-    localStorage.setItem(this.keyStorage, JSON.stringify(this.data));
+    if (typeof this.obServ !== 'undefined'){
+      this.obServ.next(result);
+    }
+
+    return result;
   }
 }

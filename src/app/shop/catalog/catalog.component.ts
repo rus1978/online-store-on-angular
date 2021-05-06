@@ -10,12 +10,11 @@ import {BasketData} from '../classes/basket';
   selector: 'app-catalog',
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.scss'],
-  providers: [ApiDataService, BasketService]
+  providers: [ApiDataService]
 })
 export class CatalogComponent implements OnInit, AfterViewChecked
 {
   public response: CategoryData;
-  public test: number;
 
   constructor(
     private apiDataService: ApiDataService,
@@ -30,9 +29,7 @@ export class CatalogComponent implements OnInit, AfterViewChecked
   private render(): void
   {
       const slug: string = 'category/' + this.route.snapshot.params.code;
-      console.log('categoryComp', slug);
-      this.test = this.basket.getTotalSum();
-      console.log('sum in service', this.basket.getTotalSum());
+      this.basket.setTotalSum();
 
       this.apiDataService.get(slug)
         .subscribe((data) => {
@@ -52,8 +49,6 @@ export class CatalogComponent implements OnInit, AfterViewChecked
   {
     event.target.classList.add('bought');
     this.basket.add(item);
-    this.test = this.basket.getTotalSum();
-    console.log('sum', this.basket.getTotalSum());
-
+    this.basket.setTotalSum();
   }
 }
