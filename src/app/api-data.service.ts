@@ -1,8 +1,6 @@
 import {Injectable} from '@angular/core';
-// import {ProductData} from './shop/catalog/classes/product-data';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../environments/environment';
-// import {Router, ActivatedRoute} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {Meta} from '@angular/platform-browser';
 import {PageData} from './page/classes/page-data';
@@ -71,7 +69,6 @@ export class ApiDataService
     if (this.isSetMetaTags === true){
       this.titleService.setTitle(data.title);
       this.meta.updateTag({name: 'description', content: data.metaDescription});
-      console.log('set data service !!!!!!!!!!!!!!!!!!!!!', data.title);
     }
   }
 

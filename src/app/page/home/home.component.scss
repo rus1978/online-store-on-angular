@@ -1,0 +1,33 @@
+.home-main{
+  position: relative;
+  padding: 50px 0;
+  h1,p{
+    text-shadow: 0 0 10px white;
+  }
+
+
+  &:before{
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    z-index: -1;
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+    background:{
+      image: url("/assets/images/sushi1.jpg");
+      size: cover;
+      position: bottom left;
+    };
+  }
+
+
+  &>div{
+    background-color: rgba(255,255,255, .5);
+  }
+
+
+}

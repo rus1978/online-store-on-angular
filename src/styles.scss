@@ -1,4 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-a.active{
-  outline: 1px solid red;
+.text-orange{
+  color: var(--bs-orange);
+}
+.btn-primary{
+  background-color: var(--bs-orange) !important;
+  border-color: var(--bs-orange) !important;
 }
